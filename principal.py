@@ -7,7 +7,7 @@ def preguntar():
     print("Bienvenido a Libreria Ga-Lu")
 
     while True:
-        print("[L] -> Libreria\n[I] - Imprenta\n[F] -> Fotocopias\n[R] - Bordado de ropa")
+        print("[L] -> Libreria\n[I] - Imprenta\n[F] -> Fotocopias\n[R] -> Bordado de ropa\n")
         try:
             i = input("Elija la opcion:" ).upper()
             ["L", "I", "F", "R"].index(i)
@@ -32,4 +32,4 @@ def inicio():
                 break
 
 
-inicio()
+

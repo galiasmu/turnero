@@ -1,4 +1,8 @@
+from tkinter import *
+from tkinter import ttk, messagebox
+
 import tkinter as tk
+from verTurnos import VerTurnosGUI
 import main
 
 class TurneroGUI:
@@ -19,6 +23,21 @@ class TurneroGUI:
 
     def sacar_turno(self, rubro):
         main.ticket(rubro)
+        messagebox.showinfo("Turno generado", f"Su turno para {rubro} ha sido generado")
+        self.open_popup()
+
+    def open_popup(self):
+        popup = tk.Toplevel()
+        popup.title("Ventana emergente")
+        popup.geometry("200x200")
+
+        # Agregar widgets a la ventana emergente
+        label = tk.Label(popup, text="Aguarde y sera llamado por pantalla")
+        label.pack()
+
+    def ver_turnos(self):
+        ver_turnos_gui = VerTurnosGUI()
 
 if __name__ == "__main__":
+
     TurneroGUI()
