@@ -1,12 +1,10 @@
-
-{"numero": "10:23:43", "rubro": "Libreria", "fecha": "L - 1", "hora": "10/05/2023"}
-{"numero": "10:23:46", "rubro": "Imprenta", "fecha": "I - 1", "hora": "10/05/2023"}
-{"numero": "10:23:48", "rubro": "Fotocopias", "fecha": "F - 1", "hora": "10/05/2023"}
-{"numero": "10:23:50", "rubro": "Bordado de Ropa", "fecha": "R - 1", "hora": "10/05/2023"}
-{"numero": "10:23:53", "rubro": "Fotocopias", "fecha": "F - 2", "hora": "10/05/2023"}
-{"numero": "10:32:05", "rubro": "Libreria", "fecha": "L - 1", "hora": "10/05/2023"}
-{"numero": "10:32:24", "rubro": "Libreria", "fecha": "L - 2", "hora": "10/05/2023"}
-{"numero": "Imprenta", "rubro": "I - 1", "fecha": "10/05/2023", "hora": "10:33:33"}
-{"numero": "Fotocopias", "rubro": "F - 1", "fecha": "10/05/2023", "hora": "10:33:35"}
-{"numero": "Bordado de Ropa", "rubro": "R - 1", "fecha": "10/05/2023", "hora": "10:33:38"}
-{"numero": "I - 1", "rubro": "Imprenta", "fecha": "10/05/2023", "hora": "10:34:23"}
+{"numero": "I - 1", "rubro": "Imprenta", "fecha": "10/05/2023", "hora": "10:50:13"}
+{"numero": "L - 1", "rubro": "Libreria", "fecha": "10/05/2023", "hora": "10:50:16"}
+{"numero": "I - 2", "rubro": "Imprenta", "fecha": "10/05/2023", "hora": "10:50:18"}
+{"numero": "R - 1", "rubro": "Bordado de Ropa", "fecha": "10/05/2023", "hora": "10:50:21"}
+{"numero": "L - 1", "rubro": "Libreria", "fecha": "10/05/2023", "hora": "11:36:09"}
+{"numero": "L - 2", "rubro": "Libreria", "fecha": "10/05/2023", "hora": "11:36:14"}
+{"numero": "R - 1", "rubro": "Bordado de Ropa", "fecha": "10/05/2023", "hora": "11:36:15"}
+{"numero": "R - 1", "rubro": "Bordado de Ropa", "fecha": "10/05/2023", "hora": "11:41:20"}
+{"numero": "I - 1", "rubro": "Imprenta", "fecha": "10/05/2023", "hora": "11:43:46"}
+{"numero": "F - 1", "rubro": "Fotocopias", "fecha": "10/05/2023", "hora": "11:44:29"}
