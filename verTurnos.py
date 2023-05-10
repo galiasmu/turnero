@@ -8,7 +8,7 @@ class VerTurnosGUI:
         self.root.geometry("400x400")
 
         self.label = tk.Label(self.root, text="Turnos:")
-        self.label.pack(pady=10)
+        self.label.pack(pady=10)  ##agregar espacio vertical de pixeles
 
         self.turnos_listbox = tk.Listbox(self.root)
         self.turnos_listbox.pack(expand=True, fill=tk.BOTH, padx=10)
@@ -18,10 +18,22 @@ class VerTurnosGUI:
         self.root.mainloop()
 
     def cargar_turnos(self):
-        with open('turnos.json', 'r') as f:
-            for linea in f:
-                turno = json.loads(linea)
-                rubro = turno['rubro']
-                fecha = turno['fecha']
-                hora = turno['hora']
-                self.turnos_listbox.insert(tk.END, f"Rubro: {rubro} | Fecha: {fecha} | Hora: {hora}")
+        try:
+            with open('turnos.json', 'r') as f:
+                for linea in f:
+                    try:
+                        turno = json.loads(linea)
+                        rubro = turno['rubro']
+                        numero = turno['numero']
+                        fecha = turno['fecha']
+                        hora = turno['hora']
+                        self.turnos_listbox.insert(tk.END, f"Rubro: {rubro} | Numero: {numero} | Fecha: {fecha} | Hora: {hora}")
+                    except json.JSONDecodeError as e:
+                        print(f"Error al decodificar la línea JSON: {linea}. Error: {e}")
+        except FileNotFoundError:
+            print("El archivo turnos.json no se encuentra.")
+
+
+if __name__ == "__main__":
+
+    VerTurnosGUI()

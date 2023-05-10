@@ -29,16 +29,20 @@ R = numeros_ropa()
 
 
 class Ticket:
-    def __init__(self, rubro, fecha, hora):
+    def __init__(self, numero, rubro, fecha, hora):
+        self.numero = numero
         self.rubro = rubro
         self.fecha = fecha
         self.hora = hora
 
+
     def to_dict(self):
         return {
+            'numero':self.numero,
             'rubro': self.rubro,
             'fecha': self.fecha,
-            'hora': self.hora,
+            'hora': self.hora
+
         }
 
 
@@ -55,7 +59,7 @@ def ticket(rubro):
     print("\n" + "x" * 23)
     print("Su numero es:")
     if rubro == "L":
-        rubro_texto = "Librería"
+        rubro_texto = "Libreria"
         numero = next(L)
     elif rubro == "I":
         rubro_texto = "Imprenta"
@@ -70,5 +74,5 @@ def ticket(rubro):
     print("Aguarde y será llamado por la pantalla")
     print("*" * 23 + "\n")
 
-    nuevo_ticket = Ticket(rubro_texto, fecha, hora)
+    nuevo_ticket = Ticket(numero, rubro_texto, fecha, hora)
     guardar_ticket(nuevo_ticket)
