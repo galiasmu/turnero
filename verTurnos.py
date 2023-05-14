@@ -1,6 +1,8 @@
 from tkinter import *
 import tkinter as tk
 import json
+import Turnos_generator
+
 
 class VerTurnosGUI:
     def __init__(self):
