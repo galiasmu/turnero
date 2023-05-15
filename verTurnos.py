@@ -50,21 +50,15 @@ class VerTurnosGUI:
 def llamar_turno(self):
     select = self.turnos_listbox.curselection()
     if select:
-        turno_select = self.turnos_listbox.get(select)
         popup = tk.Toplevel()
         popup.title("Llamar Turno")
         popup.geometry("200x200")
-        label = tk.Label(popup, text=f"Llamando al turno: {turno_select}")
-        label.pack()
-        ## eliminar turno
-        self.turnos_listbox.delete(turno_select)
-        with open('turnos.json', 'r+') as f:
-            turno = json.loads(f)
-            turno.remove(turno_select)
-            f.seek(0)
-            json.dump(turno, f, indent=4)
-            f.truncate()
-
+        turn_call = []
+        for item in select:
+            turno_select = self.turnos_listbox.get(item)
+            turn_call.append(turno_select)
+            label = tk.Label(popup, text=f"Llamando al turno: {turno_select}")
+            label.pack()
     else:
         ## si no se selecciona el turno, casilla de error
         popup = tk.Toplevel()

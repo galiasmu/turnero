@@ -67,6 +67,7 @@ class TurneroGUI:
         height = event.height
         self.root.geometry(f"{width}x{height}")
 
+
 if __name__ == "__main__":
 
     turnero = TurneroGUI()
