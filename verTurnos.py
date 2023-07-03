@@ -3,9 +3,22 @@ import tkinter as tk
 import json
 import Turnos_generator
 
+class ObservadorTurnosGUI(Turnos_generator.ObservadorTurnos):
+    def actualizar(self, turno):
+        rubro = turno.rubro
+        numero = turno.numero
+        fecha = turno.fecha
+        hora = turno.hora
+        self.turnos_listbox.insert(tk.END,  f"Rubro: {rubro} | Numero: {numero} | Fecha: {fecha} | Hora: {hora}")
+
 
 class VerTurnosGUI:
     def __init__(self):
+
+        observador_gui = ObservadorTurnosGUI()
+
+        Turnos_generator.observadores.append(observador_gui)
+
         self.root = tk.Tk()
         self.root.title("Ver Turnos")
         self.root.geometry("400x400")
@@ -23,6 +36,7 @@ class VerTurnosGUI:
         self.root.mainloop()
 
     def cargar_turnos(self):
+        self.turnos_listbox.delete(0, tk.END)
         try:
             with open('turnos.json', 'r') as f:
                 for linea in f:

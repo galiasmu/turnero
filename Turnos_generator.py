@@ -1,6 +1,20 @@
 import json
 from datetime import datetime
+from abc import ABC, abstractmethod
 
+
+
+class Observador(ABC):
+    @abstractmethod
+    def actualizar(self, turno):
+        pass
+
+
+class ObservadorTurnos(Observador):
+    def actualizar(self, turno):
+        print( f"Nuevo turno generado: Rubro: {turno.rubro} | Numero: {turno.numero} | Fecha: {turno.fecha} | Hora: {turno.hora}")
+
+observadores = [ObservadorTurnos()]
 
 def numeros_libreria():
     for n in range(1, 100000):
@@ -35,10 +49,9 @@ class Ticket:
         self.fecha = fecha
         self.hora = hora
 
-
     def to_dict(self):
         return {
-            'numero':self.numero,
+            'numero': self.numero,
             'rubro': self.rubro,
             'fecha': self.fecha,
             'hora': self.hora
@@ -50,6 +63,10 @@ def guardar_ticket(ticket):
     with open('turnos.json', 'a') as f:
         json.dump(ticket.to_dict(), f)
         f.write('\n')
+
+        for observador in observadores:
+            if isinstance(observador, Observador):
+                observador.actualizar(ticket)
 
 
 def ticket(rubro):
