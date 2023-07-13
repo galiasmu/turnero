@@ -3,19 +3,20 @@ import tkinter as tk
 import json
 import Turnos_generator
 
-class ObservadorTurnosGUI(Turnos_generator.ObservadorTurnos):
+
+class ObservadorTurnsGUI(Turnos_generator.ObservadorTurnos):
     def actualizar(self, turno):
         rubro = turno.rubro
         numero = turno.numero
         fecha = turno.fecha
         hora = turno.hora
-        self.turnos_listbox.insert(tk.END,  f"Rubro: {rubro} | Numero: {numero} | Fecha: {fecha} | Hora: {hora}")
+        self.turnos_listbox.insert(tk.END, f"Rubro: {rubro} | Numero: {numero} | Fecha: {fecha} | Hora: {hora}")
 
 
-class VerTurnosGUI:
+class VerTurnsGUI:
     def __init__(self):
 
-        observador_gui = ObservadorTurnosGUI()
+        observador_gui = ObservadorTurnsGUI()
 
         Turnos_generator.observadores.append(observador_gui)
 
@@ -46,7 +47,8 @@ class VerTurnosGUI:
                         numero = turno['numero']
                         fecha = turno['fecha']
                         hora = turno['hora']
-                        self.turnos_listbox.insert(tk.END, f"Rubro: {rubro} | Numero: {numero} | Fecha: {fecha} | Hora: {hora}")
+                        self.turnos_listbox.insert(tk.END,
+                                                   f"Rubro: {rubro} | Numero: {numero} | Fecha: {fecha} | Hora: {hora}")
                         self.TL = self.turnos_listbox.get(0, tk.END)
                         if self.TL is None:
                             popup = tk.Toplevel()
@@ -60,6 +62,7 @@ class VerTurnosGUI:
                         print(f"Error al decodificar la línea JSON: {linea}. Error: {e}")
         except FileNotFoundError:
             print("El archivo turnos.json no se encuentra.")
+
 
 def llamar_turno(self):
     select = self.turnos_listbox.curselection()
@@ -82,8 +85,5 @@ def llamar_turno(self):
         label.pack()
 
 
-
-
 if __name__ == "__main__":
-
-    VerTurnosGUI()
+    VerTurnsGUI()

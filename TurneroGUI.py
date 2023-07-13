@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import ttk, messagebox
 
 import tkinter as tk
-from verTurnos import VerTurnosGUI
+from verTurnos import VerTurnsGUI
 import Turnos_generator
 
 class TurneroGUI:
@@ -36,7 +36,7 @@ class TurneroGUI:
         r = self.ropa_button.pack
 
         if(l,i,f,r):
-            VerTurnosGUI()
+            VerTurnsGUI()
 
 
         self.root.bind("<Configure>", self.on_resize)
@@ -73,5 +73,5 @@ if __name__ == "__main__":
     turnero = TurneroGUI()
 
     if turnero:
-       VerTurnosGUI()
+       VerTurnsGUI()
 
