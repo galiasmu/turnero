@@ -13,10 +13,10 @@ class ObservadorTurnsGUI(Turnos_generator.ObservadorTurnos):
         self.turnos_listbox.insert(tk.END, f"Rubro: {rubro} | Numero: {numero} | Fecha: {fecha} | Hora: {hora}")
 
 
-class VerTurnsGUI:
+class VerTurnosGUI:
     def __init__(self):
 
-        observador_gui = ObservadorTurnsGUI()
+        observador_gui = Turnos_generator.ObservadorTurnos()
 
         Turnos_generator.observadores.append(observador_gui)
 
@@ -41,27 +41,28 @@ class VerTurnsGUI:
         try:
             with open('turnos.json', 'r') as f:
                 for linea in f:
-                    try:
-                        turno = json.loads(linea)
-                        rubro = turno['rubro']
-                        numero = turno['numero']
-                        fecha = turno['fecha']
-                        hora = turno['hora']
-                        self.turnos_listbox.insert(tk.END,
-                                                   f"Rubro: {rubro} | Numero: {numero} | Fecha: {fecha} | Hora: {hora}")
-                        self.TL = self.turnos_listbox.get(0, tk.END)
-                        if self.TL is None:
-                            popup = tk.Toplevel()
-                            popup.title("Ventana emergente")
-                            popup.geometry("200x200")
+                    if linea.strip():
+                        try:
+                            turno = json.loads(linea)
+                            rubro = turno['rubro']
+                            numero = turno['numero']
+                            fecha = turno['fecha']
+                            hora = turno['hora']
+                            self.turnos_listbox.insert(tk.END,
+                                                       f"Rubro: {rubro} | Numero: {numero} | Fecha: {fecha} | Hora: {hora}")
+                            self.TL = self.turnos_listbox.get(0, tk.END)
+                            if self.TL is None:
+                                popup = tk.Toplevel()
+                                popup.title("Ventana emergente")
+                                popup.geometry("200x200")
 
-                            # Agregar widgets a la ventana emergente
-                            label = tk.Label(popup, text="No se encontraron turnos")
-                            label.pack()
-                    except json.JSONDecodeError as e:
-                        print(f"Error al decodificar la línea JSON: {linea}. Error: {e}")
+                                # Agregar widgets a la ventana emergente
+                                label = tk.Label(popup, text="No se encontraron turnos")
+                                label.pack()
+                        except json.JSONDecodeError as e:
+                            print(f"Error al decodificar la línea JSON: {linea}. Error: {e}")
         except FileNotFoundError:
-            print("El archivo turnos.json no se encuentra.")
+                print("El archivo turnos.json no se encuentra.")
 
 
 def llamar_turno(self):
@@ -86,4 +87,4 @@ def llamar_turno(self):
 
 
 if __name__ == "__main__":
-    VerTurnsGUI()
+    VerTurnosGUI()
