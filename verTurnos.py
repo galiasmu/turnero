@@ -1,4 +1,3 @@
-from tkinter import *
 import tkinter as tk
 import json
 import Turnos_generator
@@ -22,6 +21,7 @@ class VerTurnosGUI:
 
         self.root = tk.Tk()
         self.root.title("Ver Turnos")
+        self.root.iconbitmap("recursos/LogoImprenta.ico")
         self.root.geometry("400x400")
 
         self.label = tk.Label(self.root, text="Turnos:")
@@ -50,19 +50,10 @@ class VerTurnosGUI:
                             hora = turno['hora']
                             self.turnos_listbox.insert(tk.END,
                                                        f"Rubro: {rubro} | Numero: {numero} | Fecha: {fecha} | Hora: {hora}")
-                            self.TL = self.turnos_listbox.get(0, tk.END)
-                            if self.TL is None:
-                                popup = tk.Toplevel()
-                                popup.title("Ventana emergente")
-                                popup.geometry("200x200")
-
-                                # Agregar widgets a la ventana emergente
-                                label = tk.Label(popup, text="No se encontraron turnos")
-                                label.pack()
                         except json.JSONDecodeError as e:
                             print(f"Error al decodificar la línea JSON: {linea}. Error: {e}")
         except FileNotFoundError:
-                print("El archivo turnos.json no se encuentra.")
+            print("El archivo turnos.json no se encuentra.")
 
 
 def llamar_turno(self):
@@ -70,13 +61,17 @@ def llamar_turno(self):
     if select:
         popup = tk.Toplevel()
         popup.title("Llamar Turno")
-        popup.geometry("200x200")
-        turn_call = []
-        for item in select:
-            turno_select = self.turnos_listbox.get(item)
-            turn_call.append(turno_select)
+        popup.geometry("250x150")
+
+        selected_turns = [self.turnos_listbox.get(item) for item in select]
+
+        label_heading = tk.Label(popup, text="Llamando al turno:", font=("Arial", 12, "bold"))
+        label_heading.pack(pady=10)
+
+        for turno_select in selected_turns:
             label = tk.Label(popup, text=f"Llamando al turno: {turno_select}")
             label.pack()
+
     else:
         ## si no se selecciona el turno, casilla de error
         popup = tk.Toplevel()
