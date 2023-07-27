@@ -1,20 +1,11 @@
 import json
+import time
 from datetime import datetime
-from abc import ABC, abstractmethod
+import threading
 
 
 
-class Observador(ABC):
-    @abstractmethod
-    def actualizar(self, turno):
-        pass
 
-
-class ObservadorTurnos(Observador):
-    def actualizar(self, turno):
-        print( f"Nuevo turno generado: Rubro: {turno.rubro} | Numero: {turno.numero} | Fecha: {turno.fecha} | Hora: {turno.hora}")
-
-observadores = [ObservadorTurnos()]
 
 def numeros_libreria():
     for n in range(1, 100000):
@@ -64,10 +55,6 @@ def guardar_ticket(ticket):
         json.dump(ticket.to_dict(), f)
         f.write('\n')
 
-        for observador in observadores:
-            if isinstance(observador, Observador):
-                observador.actualizar(ticket)
-
 
 def ticket(rubro):
     fecha = datetime.now().strftime('%d/%m/%Y')
@@ -93,3 +80,6 @@ def ticket(rubro):
 
     nuevo_ticket = Ticket(numero, rubro_texto, fecha, hora)
     guardar_ticket(nuevo_ticket)
+
+
+

@@ -1,0 +1,26 @@
+@startuml
+
+class Subject {
+  +observers: Observer[]
+  +addObserver(observer)
+  +removeObserver(observer)
+  +notifyObservers()
+}
+
+Subject <|-- TurnosGenerator
+
+class Observer {
+  +update()
+}
+
+Observer <|- VerTurnosGUI
+Observer <|- OtroGUI
+
+TurnosGenerator --> "-observers" Observer
+TurnosGenerator : agregar_observador(observador)
+TurnosGenerator : notificar()
+
+VerTurnosGUI : update()
+OtroGUI : update()
+
+@enduml
