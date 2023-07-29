@@ -1,15 +1,24 @@
 import tkinter as tk
 
 class LlamarTurnosGUI:
-    def __init__(self, turnos):
+    def __init__(self):
         self.root = tk.Tk()
-        self.root.title("Llamar Turnos")
+        self.root.title("Ver Turnos")
+        self.root.iconbitmap("recursos/LogoImprenta.ico")
         self.root.geometry("400x400")
 
-        self.text = tk.Text(self.root)
-        self.text.pack(expand=True, fill=tk.BOTH, padx=10)
+        self.label = tk.Label(self.root, text="Turnos:")
+        self.label.pack(pady=10)  ##agregar espacio vertical de pixeles
 
-        self.llamar_turnos(turnos)
+        self.turnos_listbox = tk.Listbox(self.root)
+        self.turnos_listbox.pack(expand=True, fill=tk.BOTH, padx=10)
+        self.llamarTurno_button = tk.Button(self.root, text="Llamar turno", command=lambda: llamar_turno(self))
+        self.llamarTurno_button.pack()
+        self.cargar_turnos()
+
+        self.actualizar_turnos()
+
+        # self.turnos_listbox.after(1000, self.actualizar_turnos)
 
         self.root.mainloop()
 
@@ -20,16 +29,15 @@ class LlamarTurnosGUI:
                 numero = turno['numero']
                 fecha = turno['fecha']
                 hora = turno['hora']
-                self.text.insert(tk.END, f"Llamando al turno: Rubro: {rubro} | Numero: {numero} | Fecha: {fecha} | Hora: {hora}\n")
+                self.text.insert(tk.END, f"Turno: {rubro} | {numero}\n")
 
             # Eliminar los turnos llamados de la lista y del archivo
-            # (Aquí deberías agregar tu lógica para eliminar los turnos)
 
         else:
             self.text.insert(tk.END, "No hay turnos disponibles.")
 
 if __name__ == "__main__":
-    # Supongamos que tienes una lista de turnos
+
     turnos_pendientes = [
         {"rubro": "Librería", "numero": "L-1", "fecha": "14/05/2023", "hora": "10:00"},
         {"rubro": "Fotocopias", "numero": "F-1", "fecha": "14/05/2023", "hora": "11:00"},

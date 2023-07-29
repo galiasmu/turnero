@@ -1,6 +1,5 @@
 import tkinter as tk
 import json
-import Turnos_generator
 
 class VerTurnosGUI:
     def __init__(self):
@@ -50,7 +49,7 @@ class VerTurnosGUI:
         self.turnos_listbox.after(5000, self.actualizar_turnos)
 
     def eliminar_turnos_seleccionados(self, select):
-        try:Z
+        try:
             with open('turnos.json', 'r') as f:
                 turnos = [json.loads(line) for line in f if line.strip()]
 
@@ -74,23 +73,27 @@ def llamar_turno(self):
     if select:
         popup = tk.Toplevel()
         popup.title("Llamar Turno")
-        popup.geometry("250x150")
-
+        popup.iconbitmap("recursos/LogoImprenta.ico")
         selected_turns = [self.turnos_listbox.get(item) for item in select]
+        label_heading = tk.Label(popup, text="Llamando al turno", font=("Futura", 80, "bold"))
+        popup_width = 1920
+        popup_height = 1080
+        screen_width = self.root.winfo_screenwidth()
+        screen_height = self.root.winfo_screenheight()
+        x = (screen_width - popup_width) // 2
+        y = (screen_height - popup_height) // 2
+        popup.geometry(f"{popup_width}x{popup_height}+{x}+{y}")
 
-        label_heading = tk.Label(popup, text="Llamando al turno:", font=("Arial", 12, "bold"))
-        label_heading.pack(pady=10)
+        label_heading.pack(pady=100)
+        label_heading.pack(padx=100)
 
         for turno_select in selected_turns:
-            label = tk.Label(popup, text=f"Llamando al turno: {turno_select}")
+            turnoExtract = turno_select.split(" | ")[1].replace("Numero:", " ")
+            label = tk.Label(popup, text=f"{turnoExtract}", font=("Futura", 70, "bold"))
             label.pack()
         for item in reversed(select):
             self.turnos_listbox.delete(item)
             self.eliminar_turnos_seleccionados(select)
-
-
-
-
     else:
         ## si no se selecciona el turno, casilla de error
         popup = tk.Toplevel()

@@ -1,5 +1,7 @@
 from tkinter import ttk, messagebox
 import tkinter as tk
+
+from cargarTurnos import LlamarTurnosGUI
 from verTurnos import VerTurnosGUI
 import Turnos_generator
 
@@ -14,7 +16,6 @@ class TurneroGUI:
         imagen_imprenta = tk.PhotoImage(file="recursos/imprenta.png")
         imagen_fotocopias = tk.PhotoImage(file="recursos/fotocopias.png")
         imagen_ropa = tk.PhotoImage(file="recursos/textil.png")
-
         screen_width = self.root.winfo_screenwidth()
         screen_height = self.root.winfo_screenheight()
 
@@ -41,28 +42,28 @@ class TurneroGUI:
         self.libreria_button.pack(side=tk.LEFT, padx=100, pady=10)
         self.imprenta_button = tk.Button(frame1, text="IMPRENTA", image=imagen_imprenta, compound="right",
                                          command=lambda: self.sacar_turno("I"), **estilo_boton)
-        self.imprenta_button.pack(side=tk.LEFT, padx=50, pady=10)
+        self.imprenta_button.pack(side=tk.LEFT, padx=100, pady=10)
         self.fotocopias_button = tk.Button(frame2, text="FOTOCOPIAS", image=imagen_fotocopias, compound="right",
                                            command=lambda: self.sacar_turno("F"), **estilo_boton)
-        self.fotocopias_button.pack(side=tk.LEFT, padx=110, pady=10)
-        self.ropa_button = tk.Button(frame2, text="ROPA", image=imagen_ropa, compound="right",
+        self.fotocopias_button.pack(side=tk.LEFT, padx=100, pady=10)
+        self.ropa_button = tk.Button(frame2, text="BORDADO", image=imagen_ropa, compound="right",
                                      command=lambda: self.sacar_turno("R") , **estilo_boton)
         self.ropa_button.pack(side=tk.LEFT, padx=100, pady=10)
 
         if (self.libreria_button, self.imprenta_button, self.fotocopias_button, self.ropa_button):
             VerTurnosGUI()
+            LlamarTurnosGUI()
 
         self.root.bind("<Configure>", self.on_resize)
         self.root.mainloop()
-
-
 
     def sacar_turno(self, rubro):
         Turnos_generator.ticket(rubro)
         messagebox.showinfo("Turno generado",
                             f"Su turno para {rubro} ha sido creado. \nAguarde y sera llamado por pantalla ")
 
-    # messagebox.showinfo("Aguarde y sera llamado por pantalla")
+
+
 
     def on_resize(self, event):
         button_width = self.root.winfo_width() * 0.8
@@ -78,3 +79,4 @@ if __name__ == "__main__":
 
     if turnero:
         VerTurnosGUI()
+        LlamarTurnosGUI()
