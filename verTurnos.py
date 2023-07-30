@@ -91,6 +91,9 @@ def llamar_turno(self):
             turnoExtract = turno_select.split(" | ")[1].replace("Numero:", " ")
             label = tk.Label(popup, text=f"{turnoExtract}", font=("Futura", 70, "bold"))
             label.pack()
+
+        popup.after(120000, popup.destroy)
+
         for item in reversed(select):
             self.turnos_listbox.delete(item)
             self.eliminar_turnos_seleccionados(select)
